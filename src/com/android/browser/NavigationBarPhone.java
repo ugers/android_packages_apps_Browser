@@ -50,6 +50,7 @@ public class NavigationBarPhone extends NavigationBarBase implements
     private Drawable mTextfieldBgDrawable;
     private PopupMenu mPopupMenu;
     private boolean mOverflowMenuShowing;
+    private boolean mNeedsMenu;
     private View mIncognitoIcon;
 
     public NavigationBarPhone(Context context) {
@@ -90,6 +91,7 @@ public class NavigationBarPhone extends NavigationBarBase implements
         mTextfieldBgDrawable = res.getDrawable(R.drawable.textfield_active_holo_dark);
         mUrlInput.setContainer(this);
         mUrlInput.setStateListener(this);
+        mNeedsMenu = !ViewConfiguration.get(getContext()).hasPermanentMenuKey();
         mIncognitoIcon = findViewById(R.id.incognito_icon);
     }
 
@@ -222,7 +224,7 @@ public class NavigationBarPhone extends NavigationBarBase implements
             mMagnify.setVisibility(View.GONE);
             mTabSwitcher.setVisibility(View.VISIBLE);
             mTitleContainer.setBackgroundDrawable(null);
-            mMore.setVisibility(View.VISIBLE);
+            mMore.setVisibility(mNeedsMenu ? View.VISIBLE : View.GONE);
             break;
         case StateListener.STATE_HIGHLIGHTED:
             mComboIcon.setVisibility(View.GONE);
