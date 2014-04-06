@@ -696,6 +696,13 @@ public class BrowserSettings implements OnSharedPreferenceChangeListener,
         return mPrefs.getBoolean(PREF_ENABLE_HARDWARE_ACCEL_SKIA, false);
     }
 
+    public int getUserAgent() {
+        //if (!isDebugEnabled()) {
+        //    return 0;
+        //}
+        return Integer.parseInt(mPrefs.getString(PREF_USER_AGENT, "3"));
+    }
+    
     // -----------------------------
     // getter/setters for hidden_debug_preferences.xml
     // -----------------------------
