@@ -96,7 +96,7 @@ public class HomeProvider extends ContentProvider {
                 Uri uri = Uri.parse(url);
                 if (AUTHORITY.equals(uri.getAuthority())) {
                     InputStream ins = context.getContentResolver()
-                            .openInputStream(uri);
+                            .openInputStream(Uri.parse(url + "/home"));
                     return new WebResourceResponse("text/html", "utf-8", ins);
                 }
             }
